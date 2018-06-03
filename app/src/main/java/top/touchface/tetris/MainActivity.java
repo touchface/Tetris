@@ -125,6 +125,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             }
         };
+
         //设置参数
         nextView.setBackgroundColor(0x10000000);
         nextView.setLayoutParams(new FrameLayout.LayoutParams(-1,250));
