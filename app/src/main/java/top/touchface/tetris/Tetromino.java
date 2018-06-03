@@ -6,7 +6,7 @@ import java.util.Random;
  * @author Jason
  * 俄罗斯方块的基本形状类
  * **/
-public class Tetromino {
+public class Tetromino implements Cloneable{
     //由4个方块构成的基本形状
     private Cell cells[];
     //当前形状的颜色
@@ -110,6 +110,18 @@ public class Tetromino {
         }
         Tetromino tetromino=new Tetromino(cells,color,type);
         return tetromino;
+    }
+    @Override
+    public Object clone(){
+        int type=this.type;
+        int color=this.color;
+        Cell cs[]=new Cell[4];
+        for (int i=0;i<this.cells.length;i++){
+            cs[i]=(Cell) cells[i].clone();
+        }
+        Tetromino tetromino=new Tetromino(cs,color,type);
+
+        return  tetromino;
     }
 
     @Override
