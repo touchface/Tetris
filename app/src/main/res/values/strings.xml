@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Tetris</string>
+    <string name="_start">开始</string>
+    <string name="_restart">新游戏</string>
+    <string name="_pause">暂停</string>
+    <string name="_paused">已暂停</string>
+    <string name="_continue">继续</string>
+    <string name="_left">左移</string>
+    <string name="_right">右移</string>
+    <string name="_rotate">旋转</string>
+    <string name="_down">下降</string>
+    <string name="_game_over">游戏结束!</string>
+    <string name="_next">下一个</string>
+    <string name="_max_score">最高分</string>
+    <string name="_now_score">当前分数</string>
+</resources>
