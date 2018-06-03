@@ -9,25 +9,15 @@ import java.util.Random;
 public class Tetromino implements Cloneable{
     //由4个方块构成的基本形状
     private Cell cells[];
-    //当前形状的颜色
-    private int color;
     //当前形状的类型
     private int type;
-    public Tetromino(Cell cells[],int color,int type){
+    public Tetromino(Cell cells[],int type){
         this.cells=cells;
-        this.color=color;
         this.type=type;
     }
 
     public Cell[] getCells() {
         return cells;
-    }
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
     }
 
     public int getType() {
@@ -65,72 +55,71 @@ public class Tetromino implements Cloneable{
             case 0:
                 //田
                 cells = new Cell[]{
-                        new Cell(4, 0),
-                        new Cell(5, 0),
-                        new Cell(4, 1),
-                        new Cell(5, 1)};
+                        new Cell(4, 0,color),
+                        new Cell(5, 0,color),
+                        new Cell(4, 1,color),
+                        new Cell(5, 1,color)};
                 break;
             case 1:
                 //L
                 cells = new Cell[]{
-                        new Cell(4, 1),
-                        new Cell(3, 0),
-                        new Cell(3, 1),
-                        new Cell(5, 1)};
+                        new Cell(4, 1,color),
+                        new Cell(3, 0,color),
+                        new Cell(3, 1,color),
+                        new Cell(5, 1,color)};
                 break;
             case 2:
                 //反L
                 cells = new Cell[]{
-                        new Cell(4, 1),
-                        new Cell(5, 0),
-                        new Cell(3, 1),
-                        new Cell(5, 1)};
+                        new Cell(4, 1,color),
+                        new Cell(5, 0,color),
+                        new Cell(3, 1,color),
+                        new Cell(5, 1,color)};
                 break;
             case 3:
                 //——
                 cells = new Cell[]{
-                        new Cell(5, 0),
-                        new Cell(3, 0),
-                        new Cell(4, 0),
-                        new Cell(6, 0)};
+                        new Cell(5, 0,color),
+                        new Cell(3, 0,color),
+                        new Cell(4, 0,color),
+                        new Cell(6, 0,color)};
                 break;
             case 4:
                 //Z
                 cells = new Cell[]{
-                        new Cell(4, 1),
-                        new Cell(3, 0),
-                        new Cell(4, 0),
-                        new Cell(5, 1)};
+                        new Cell(4, 1,color),
+                        new Cell(3, 0,color),
+                        new Cell(4, 0,color),
+                        new Cell(5, 1,color)};
                 break;
             case 5:
                 //反Z
                 cells = new Cell[]{
-                        new Cell(4, 1),
-                        new Cell(3, 1),
-                        new Cell(4, 0),
-                        new Cell(5, 0)};
+                        new Cell(4, 1,color),
+                        new Cell(3, 1,color),
+                        new Cell(4, 0,color),
+                        new Cell(5, 0,color)};
                 break;
             case 6:
                 //凸
                 cells = new Cell[]{
-                        new Cell(4, 1),
-                        new Cell(3, 1),
-                        new Cell(4, 0),
-                        new Cell(5, 1)};
+                        new Cell(4, 1,color),
+                        new Cell(3, 1,color),
+                        new Cell(4, 0,color),
+                        new Cell(5, 1,color)};
                 break;
         }
-        Tetromino tetromino=new Tetromino(cells,color,type);
+        Tetromino tetromino=new Tetromino(cells,type);
         return tetromino;
     }
     @Override
     public Object clone(){
         int type=this.type;
-        int color=this.color;
         Cell cs[]=new Cell[4];
         for (int i=0;i<this.cells.length;i++){
             cs[i]=(Cell) cells[i].clone();
         }
-        Tetromino tetromino=new Tetromino(cs,color,type);
+        Tetromino tetromino=new Tetromino(cs,type);
 
         return  tetromino;
     }
@@ -139,7 +128,6 @@ public class Tetromino implements Cloneable{
     public String toString() {
         return "Tetromino{" +
                 "cells=" + Arrays.toString(cells) +
-                ", color=" + color +
                 ", type=" + type +
                 '}';
     }

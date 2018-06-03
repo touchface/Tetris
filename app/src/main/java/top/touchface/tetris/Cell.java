@@ -7,21 +7,24 @@ public class Cell implements Cloneable{
 
     private int x;
     private int y;
-
+    private int color;
     public Cell(){
         x=0;
         y=0;
+        color=0;
     }
     /**
      *格子的构造方法，用于初始化格子对象
      *@param x 格子的横坐标
      *@param y 格子的纵坐标
      * **/
-    public Cell(int x, int y) {
+    public Cell(int x, int y,int color) {
         this();
         this.x = x;
         this.y = y;
+        this.color=color;
     }
+    public int getColor(){return color;}
 
     public int getX() {
         return x;
@@ -31,6 +34,9 @@ public class Cell implements Cloneable{
         return y;
     }
 
+    public void setColor(int color){
+        this.color=color;
+    }
     public void setX(int x) {
         this.x = x;
     }
@@ -59,6 +65,7 @@ public class Cell implements Cloneable{
         return "Cell{" +
                 "x=" + x +
                 ", y=" + y +
+                ", color=" + color +
                 '}';
     }
 }
