@@ -42,6 +42,17 @@ public class Tetromino implements Cloneable{
             cell.move(x,y);
         }
     }
+    /**
+     *对当前形状进行旋转
+     * **/
+    public void rotate(){
+        for (int i=0;i<cells.length;i++){
+            int checkX=-cells[i].getY()+cells[0].getY()+cells[0].getX();
+            int checkY= cells[i].getX()-cells[0].getX()+cells[0].getY();
+            cells[i].setX(checkX);
+            cells[i].setY(checkY);
+        }
+    }
     public static Tetromino newRandomInstance(){
         //七种颜色值
         int ranColor[]={0xFFFF0000,0xFFFF7F00,0xFFFFFF00,0xFF00FF00,0xFF00FFFF,0xFF0000FF,0xFF8B00FF};
