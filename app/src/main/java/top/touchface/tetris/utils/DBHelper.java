@@ -40,11 +40,13 @@ public class DBHelper extends SQLiteOpenHelper {
             return null;
         }
         Cursor cursor = db.rawQuery("select* from Score order by s_score desc", null);
-        Score score = new Score();
-        cursor.moveToNext();
-        score.setS_id(cursor.getInt(0));
-        score.setS_name(cursor.getString(1));
-        score.setS_score(cursor.getInt(2));
+        Score score =null;
+        if(cursor.moveToNext()) {
+            score=new Score();
+            score.setS_id(cursor.getInt(0));
+            score.setS_name(cursor.getString(1));
+            score.setS_score(cursor.getInt(2));
+        }
         cursor.close();
         return score;
     }
