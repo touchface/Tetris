@@ -1,4 +1,4 @@
-package top.touchface.tetris;
+package top.touchface.tetris.control.entry_control;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
