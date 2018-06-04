@@ -204,9 +204,10 @@ public class GameControl {
      * 结束判断
      * **/
     private boolean checkOver () {
+
         Cell cells[]=tetrominoModel.getPresentTetromino().getCells();
-        for (int i = 0; i < cells.length; i++) {
-            if (mapModel.map.cells[cells[i].getX()][cells[i].getY()]!=null) {
+        for (Cell cell:cells){
+            if(mapModel.map.cells[cell.getX()][cell.getY()]!=null){
                 return true;
             }
         }
@@ -225,10 +226,13 @@ public class GameControl {
         }
         Cell cells[]=tetrominoModel.getPresentTetromino().getCells();
         //2.堆积处理
-        for (int i = 0; i < cells.length; i++) {
-            mapModel.map.cells[cells[i].getX()][cells[i].getY()] = cells[i];
+        for (Cell cell:cells){
+            mapModel.map.cells[cell.getX()][cell.getY()]=cell;
         }
         scoreModel.addScore(mapModel.cleanLine());//消行处理
+        Message message=new Message();
+        message.what=3;
+        mActivity.sendMessageToGVH(message);
         //3.生成新形状
         tetrominoModel.newPresentTetromino();
         //4.检测游戏是否结束
