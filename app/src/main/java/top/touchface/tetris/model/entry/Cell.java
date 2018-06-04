@@ -11,7 +11,7 @@ public class Cell implements Cloneable{
     public Cell(){
         x=0;
         y=0;
-        color=0;
+        color=0xff000000;
     }
     /**
      *格子的构造方法，用于初始化格子对象

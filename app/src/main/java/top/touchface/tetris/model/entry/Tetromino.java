@@ -45,7 +45,7 @@ public class Tetromino implements Cloneable{
     }
     public static Tetromino newRandomInstance(){
         //七种颜色值
-        int ranColor[]={0xFFFF0000,0xFFFF7F00,0xFFFFFF00,0xFF00FF00,0xFF00FFFF,0xFF0000FF,0xFF8B00FF};
+        int ranColor[]={0xffff0000,0xffff7f00,0xffffff00,0xff00ff00,0xff00ffff,0xff0000ff,0xff8B00ff};
 
         Random random=new Random();
         int type=random.nextInt(7);//生成类型

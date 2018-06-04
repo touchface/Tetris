@@ -1,4 +1,4 @@
-package top.touchface.tetris.control.entry_control;
+package top.touchface.tetris.model;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -16,7 +16,7 @@ import top.touchface.tetris.model.entry.Tetromino;
  * 形状的控制类
  * 包含当前形状和下一个形状
  * **/
-public class TetrominoControl {
+public class TetrominoModel {
 
     //当前的形状
     private Tetromino presentTetromino;
@@ -29,7 +29,7 @@ public class TetrominoControl {
     //格子的大小
     private int cellSize;
 
-    public TetrominoControl(int cellSize){
+    public TetrominoModel(int cellSize){
         //初始化方块大小
         this.cellSize=cellSize;
 
@@ -145,6 +145,7 @@ public class TetrominoControl {
         }
         //空心方块绘制
         for (Cell cell:presentTetromino.getCells()) {
+            shadowPaint.setColor(cell.getColor());
             canvas.drawRect(
                     (cell.getX())* cellSize,
                     (cell.getY()) * cellSize,
@@ -152,7 +153,15 @@ public class TetrominoControl {
                     (cell.getY()) * cellSize + cellSize,shadowPaint);
         }
     }
-
+    public boolean moveLeft(GMap map){
+        return move(-1,0,map);
+    }
+    public boolean moveRight(GMap map){
+        return move(1,0,map);
+    }
+    public boolean moveBottom(GMap map){
+        return move(0,1,map);
+    }
     /**
      * 移动
      * **/
@@ -190,6 +199,11 @@ public class TetrominoControl {
         presentTetromino.rotate();
         return true;
     }
+
+    public Tetromino getPresentTetromino() {
+        return presentTetromino;
+    }
+
     /**
      * 判断x,y是否在边界外
      * @param x 方块的x坐标

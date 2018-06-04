@@ -1,4 +1,4 @@
-package top.touchface.tetris.control.entry_control;
+package top.touchface.tetris.model;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -9,7 +9,7 @@ import top.touchface.tetris.model.entry.GMap;
  * 游戏地图的控制类
  *
  * **/
-public class GMapControl {
+public class GMapModel {
     public GMap map;
     //方块大小
     private int xWidth,yHeight,cellSize;
@@ -17,7 +17,7 @@ public class GMapControl {
     private Paint mapPaint;
     //声明辅助线画笔
     private Paint linePaint;
-    public GMapControl(int map_x,int map_y,int xWidth,int yHeight,int cellSize){
+    public GMapModel(int map_x, int map_y, int xWidth, int yHeight, int cellSize){
         this.xWidth=xWidth;
         this.yHeight=yHeight;
         this.cellSize=cellSize;

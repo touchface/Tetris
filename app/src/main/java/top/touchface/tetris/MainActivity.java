@@ -1,6 +1,5 @@
 package top.touchface.tetris;
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.lang.ref.WeakReference;
+import top.touchface.tetris.control.GameControl;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     //声明下一块方块面板
     View nextView;
     //游戏控制器
-
+    GameControl gameControl;
     //处理别的线程发过来的信息
     Handler handler;
 
@@ -79,9 +79,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * 初始化数据
      **/
     private void initData() {
-
+        //初始化参数
+        int width=getScreenWidth();
+        Config.XWIDTH=width*2/3;
+        Config.YHEIGHT=Config.XWIDTH*2;
         //初始化游戏控制
-
+        gameControl=new GameControl(this);
+        gameControl.initData();
     }
 
     /**
@@ -103,7 +107,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 super.onDraw(canvas);
 
                 //绘制游戏内容
-
+                gameControl.draw(canvas);
                 //更新分数信息
                 freshTextScore();
             }
@@ -122,20 +126,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             protected void onDraw(Canvas canvas){
                 super.onDraw(canvas);
-
+                gameControl.drawNext(canvas);
             }
         };
 
         //设置参数
         nextView.setBackgroundColor(0x10000000);
         nextView.setLayoutParams(new FrameLayout.LayoutParams(-1,250));
-        FrameLayout layoutNext=(FrameLayout)findViewById(R.id.layoutNext);
+        FrameLayout layoutNext=findViewById(R.id.layoutNext);
         layoutNext.addView(nextView);
 
 
     }
     private void freshTextScore(){
-
+        textNowScore.setText(""+gameControl.getScore());
+        textMaxScore.setText(""+gameControl.getMaxScore());
     }
 
     /**
@@ -190,16 +195,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
      **/
     @Override
     public void onClick(View v) {
-
+        //进行事件监听
+        gameControl.onClick(v.getId());
         //更新数据后重绘视图
         gameView.invalidate();
     }
     private int getScreenWidth(){
+
         WindowManager manager = this.getWindowManager();
         DisplayMetrics outMetrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
-
 
 }
