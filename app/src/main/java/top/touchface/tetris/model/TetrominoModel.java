@@ -39,8 +39,8 @@ public class TetrominoModel {
         //初始化投影画笔
         shadowPaint=new Paint();
         shadowPaint.setAntiAlias(true);
-        shadowPaint.setStyle(Paint.Style.STROKE);
-        shadowPaint.setStrokeWidth(2);
+        //shadowPaint.setStyle(Paint.Style.STROKE);
+        //shadowPaint.setStrokeWidth(2);
     }
     /**
      * 生成当前的游戏方块
@@ -143,9 +143,10 @@ public class TetrominoModel {
                 break;
             }
         }
-        //空心方块绘制
-        for (Cell cell:presentTetromino.getCells()) {
+        //投影绘制
+        for (Cell cell:shadow.getCells()) {
             shadowPaint.setColor(cell.getColor());
+            shadowPaint.setAlpha(50);
             canvas.drawRect(
                     (cell.getX())* cellSize,
                     (cell.getY()) * cellSize,
