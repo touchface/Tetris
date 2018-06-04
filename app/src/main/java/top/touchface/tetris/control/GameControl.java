@@ -2,6 +2,8 @@ package top.touchface.tetris.control;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Message;
+import android.util.Log;
+
 import top.touchface.tetris.Config;
 import top.touchface.tetris.MainActivity;
 import top.touchface.tetris.R;
@@ -238,7 +240,9 @@ public class GameControl {
         //4.检测游戏是否结束
         isOver = checkOver();
         if(isOver){
-            scoreModel.saveScore("LOCAL");
+            if(!scoreModel.saveScore("LOCAL")){
+                Log.e("LOG","failed to save score of user 'LOCAL'");
+            }
         }
         return false;
     }
