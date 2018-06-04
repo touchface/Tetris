@@ -45,11 +45,12 @@ public class Tetromino implements Cloneable{
     }
     public static Tetromino newRandomInstance(){
         //七种颜色值
-        int ranColor[]={0xffff0000,0xffff7f00,0xffffff00,0xff00ff00,0xff00ffff,0xff0000ff,0xff8B00ff};
+        int ranColor[]={0xffff0000,0xffff7f00,0xffffff00,0xff00ff00,0xff00ffff,0xff0000ff,0xff8b00ff};
 
         Random random=new Random();
+        Tetromino tetromino;
         int type=random.nextInt(7);//生成类型
-        int color=random.nextInt(ranColor.length);//生成随机颜色
+        int color=ranColor[random.nextInt(ranColor.length)];//生成随机颜色
         Cell cells[]=null;
         switch (type) {
             case 0:
@@ -109,18 +110,23 @@ public class Tetromino implements Cloneable{
                         new Cell(5, 1,color)};
                 break;
         }
-        Tetromino tetromino=new Tetromino(cells,type);
+        tetromino=new Tetromino(cells,type);
         return tetromino;
     }
     @Override
     public Object clone(){
-        int type=this.type;
-        Cell cs[]=new Cell[4];
-        for (int i=0;i<this.cells.length;i++){
-            cs[i]=(Cell) cells[i].clone();
+        Tetromino tetromino=null;
+        try {
+            super.clone();
+            int type=this.type;
+            Cell cs[]=new Cell[4];
+            for (int i=0;i<this.cells.length;i++){
+                cs[i]=(Cell) cells[i].clone();
+            }
+            tetromino=new Tetromino(cs,type);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
         }
-        Tetromino tetromino=new Tetromino(cs,type);
-
         return  tetromino;
     }
 
