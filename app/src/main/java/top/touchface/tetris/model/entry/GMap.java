@@ -1,7 +1,4 @@
 package top.touchface.tetris.model.entry;
-
-import top.touchface.tetris.model.entry.Cell;
-
 /**
  * @author Jason
  * 游戏地图类，用于保存堆积的方块
