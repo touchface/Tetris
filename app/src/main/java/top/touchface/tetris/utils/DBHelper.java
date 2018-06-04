@@ -58,9 +58,9 @@ public class DBHelper extends SQLiteOpenHelper {
             return 0;
         }
         ContentValues contentValues = new ContentValues();
-        i = db.insert("Score", null, contentValues);
         contentValues.put("s_name", score.getS_name());
         contentValues.put("s_score", score.getS_score());
+        i = db.insert("Score", null, contentValues);
         return i;
     }
 
