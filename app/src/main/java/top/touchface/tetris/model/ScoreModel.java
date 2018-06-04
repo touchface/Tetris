@@ -1,7 +1,6 @@
 package top.touchface.tetris.model;
-
 import android.content.Context;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import top.touchface.tetris.model.entry.Score;
 import top.touchface.tetris.utils.DBHelper;
 
@@ -13,9 +12,7 @@ public class ScoreModel {
 
         dbHelper=new DBHelper(context);
     }
-    public void setScore(int score){
-        this.score=score;
-    }
+
     /**
      * 将游戏分数清空
      * **/
@@ -35,12 +32,14 @@ public class ScoreModel {
     public int getScore(){
         return score;
     }
-    /**
-     * 获取本地的游戏记录
-     * **/
-    public ArrayList<Integer> getLocalScores(){
-        return null;
-    }
+
+    ///**
+    // * 获取本地的游戏记录
+    // * **/
+    //public ArrayList<Integer> getLocalScores(){
+    //    return null;
+    //}
+
     /**
      * 获取本地的游戏记录
      * **/
@@ -48,8 +47,9 @@ public class ScoreModel {
         Score score=dbHelper.getMaxScore();
         int num=0;
         if(score!=null){
-            num=score.getS_score().intValue();
+            num=score.getS_score();
         }
+
         return num;
     }
     /**
@@ -63,10 +63,13 @@ public class ScoreModel {
         scoreMsg.setS_score(score);
         scoreMsg.setS_name(username);
         long i=dbHelper.insertScore(scoreMsg);
-        if(i>0){
-            return true;
-        }else{
-            return false;
+        return i>0;
+    }
+    @Override
+    protected void finalize() throws Throwable{
+        super.finalize();
+        if(dbHelper!=null){
+            dbHelper.close();
         }
     }
 
