@@ -2,6 +2,7 @@ package top.touchface.tetris.model;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,6 +73,7 @@ public class TetrominoModel {
         //方块绘制
         for (Cell cell:presentTetromino.getCells()) {
             tetrominoPaint.setColor(cell.getColor());
+            shadowPaint.setAlpha(150);
             canvas.drawRect(
                     (cell.getX())* cellSize,
                     (cell.getY()) * cellSize,
@@ -91,18 +93,19 @@ public class TetrominoModel {
         int cellSize=width/5;
         //统计X轴有多少给方块
         Map<Integer,Integer> map=new HashMap<>();
-        for (Cell cube:presentTetromino.getCells()) {
+        for (Cell cube:nextTetromino.getCells()) {
             map.put(cube.getX(),cube.getY());
         }
-
         int shapeWidth=cellSize*map.size();
         int left=(width-shapeWidth)/2;
         if(nextTetromino.getType()==0){
             left-=cellSize;
         }
+        Log.e("LOG","left:"+left+",width:"+width);
         //方块绘制
         for (Cell cell:nextTetromino.getCells()) {
             tetrominoPaint.setColor(cell.getColor());
+            shadowPaint.setAlpha(150);
             canvas.drawRect(
                     (cell.getX() -3)* cellSize+left,
                     (cell.getY()+1) * cellSize,
@@ -146,7 +149,7 @@ public class TetrominoModel {
         //投影绘制
         for (Cell cell:shadow.getCells()) {
             shadowPaint.setColor(cell.getColor());
-            shadowPaint.setAlpha(50);
+            shadowPaint.setAlpha(20);
             canvas.drawRect(
                     (cell.getX())* cellSize,
                     (cell.getY()) * cellSize,
