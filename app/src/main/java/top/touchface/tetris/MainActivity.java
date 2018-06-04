@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.lang.ref.WeakReference;
+import java.util.Locale;
+
 import top.touchface.tetris.control.GameControl;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -43,6 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initView();
         initListener();
         handler = new GameViewHandler(this);
+
     }
     static class GameViewHandler extends Handler {
         private final WeakReference<MainActivity> mActivity;
@@ -70,6 +73,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 case 2:
                     //设置buttonPause的值
                     mActivity.get().setBtnPauseText(s_msg);
+                    break;
+                case 3:
+                    //刷新当前游戏的分数和最高分
+                    mActivity.get().freshTextScore();
                     break;
             }
         }
@@ -105,11 +112,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-
                 //绘制游戏内容
                 gameControl.draw(canvas);
-                //更新分数信息
-                freshTextScore();
             }
         };
         int width=getScreenWidth();
@@ -138,9 +142,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     }
+    /**
+     * 刷新界面上的分数
+     * **/
     private void freshTextScore(){
-        textNowScore.setText(""+gameControl.getScore());
-        textMaxScore.setText(""+gameControl.getMaxScore());
+
+        textNowScore.setText(String.format(Locale.US,"%d",gameControl.getScore()));
+        textMaxScore.setText(String.format(Locale.US,"%d",gameControl.getMaxScore()));
     }
 
     /**
