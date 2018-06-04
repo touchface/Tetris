@@ -1,4 +1,4 @@
-package top.touchface.tetris;
+package top.touchface.tetris.model.entry;
 /**
  * @author Jason
  * 格子类，用于构成俄罗斯方块的基本形状

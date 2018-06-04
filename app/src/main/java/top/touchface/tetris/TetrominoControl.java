@@ -6,6 +6,10 @@ import android.graphics.Paint;
 import java.util.HashMap;
 import java.util.Map;
 
+import top.touchface.tetris.model.entry.Cell;
+import top.touchface.tetris.model.entry.GMap;
+import top.touchface.tetris.model.entry.Tetromino;
+
 
 /**
  *@author Jason

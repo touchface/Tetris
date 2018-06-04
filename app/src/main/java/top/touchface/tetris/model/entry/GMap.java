@@ -1,6 +1,6 @@
-package top.touchface.tetris.object;
+package top.touchface.tetris.model.entry;
 
-import top.touchface.tetris.object.Cell;
+import top.touchface.tetris.model.entry.Cell;
 
 /**
  * @author Jason

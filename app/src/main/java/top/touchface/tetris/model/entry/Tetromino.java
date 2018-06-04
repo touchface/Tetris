@@ -1,4 +1,4 @@
-package top.touchface.tetris;
+package top.touchface.tetris.model.entry;
 import java.util.Arrays;
 import java.util.Random;
 
